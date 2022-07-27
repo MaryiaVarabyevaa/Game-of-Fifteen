@@ -33,6 +33,7 @@ function getMatrix(arr) {
   }
   return subArray;
 }
+items[countItems - 1].style.display = "none";
 let matrix = getMatrix(
   items.map((item) => Number(item.dataset.id))
 );
@@ -42,10 +43,10 @@ function setNodeStyles(node, x, y) {
   node.style.transform = `translate3D(${x * shiftPs}%, ${y * shiftPs}%, 0)`;
 }
 
-function setPositionItems(matrix) {
-  for (let y = 0; y < matrix.length; y++) {
-    for (let x = 0; x < matrix[y].length; x++) {
-      const value = matrix[y][x];
+function setPositionItems(arr) {
+  for (let y = 0; y < arr.length; y++) {
+    for (let x = 0; x < arr[y].length; x++) {
+      const value = arr[y][x];
       const node = items[value - 1];
       setNodeStyles(node, x, y);
     }

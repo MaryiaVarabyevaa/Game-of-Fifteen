@@ -8,7 +8,9 @@
     color: $color-number;
     @include font(500, 3.2rem);
     @extend %cursor;
+    @extend %transition;
     border-radius: 10px;
+    box-shadow: inset 1px 1px $color-background-wrapper;
 }
 .item__value {
     display: flex;
