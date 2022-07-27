@@ -1,0 +1,15 @@
+.wrapper {
+    max-width: 440px;
+    padding: 2rem;
+    margin: 0 auto;
+    text-align: center;
+    user-select: none;
+
+    @include flex(column, 32px);
+}
+.wrapper-game {
+    width: 100%;
+    padding-bottom: 100%;
+    background: $color-background-wrapper;
+    position: relative;
+}

@@ -1,5 +1,13 @@
-.header { 
-    height: 50px;
-    width: 50px;
-    background-color: darkblue;
-}
+@import '../../node_modules/scss-reset/src/scss/_reset.scss';
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
+@import "abstract/constants";
+@import "abstract/mixins";
+@import "abstract/placeholders";
+
+@import "base/base";
+
+@import "layouts/wrapper";
+
+@import "components/items";
+@import "components/others";

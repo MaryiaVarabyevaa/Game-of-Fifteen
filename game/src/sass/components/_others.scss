@@ -1,0 +1,18 @@
+.header {
+    @include font(500, 3.2rem);
+    @extend %letter-spacing;
+}
+.btn {
+    align-self: center;
+    background: $color-item;
+    color: $color-number;
+    @include font(500, 2.0rem);
+    @extend %letter-spacing;
+    @extend %cursor;
+    padding: 0.5em 1.5em;
+    
+    &:hover {
+       background: $color-number;
+       color: $color-item;
+    }
+}

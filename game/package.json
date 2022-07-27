@@ -21,6 +21,7 @@
     "webpack-serve": "^4.0.0"
   },
   "dependencies": {
-    "eslint-config-airbnb-base": "^15.0.0"
+    "eslint-config-airbnb-base": "^15.0.0",
+    "scss-reset": "^1.2.2"
   }
 }
