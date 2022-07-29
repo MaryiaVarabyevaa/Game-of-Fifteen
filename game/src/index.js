@@ -33,6 +33,7 @@ function getMatrix(arr) {
   }
   return subArray;
 }
+
 items[countItems - 1].style.display = "none";
 let matrix = getMatrix(
   items.map((item) => Number(item.dataset.id))
@@ -40,8 +41,12 @@ let matrix = getMatrix(
 
 function setNodeStyles(node, x, y) {
   const shiftPs = 100;
+  // eslint-disable-next-line no-param-reassign
   node.style.transform = `translate3D(${x * shiftPs}%, ${y * shiftPs}%, 0)`;
 }
+
+// y - индекс элементов массива
+// x - индекс элементов подмассива
 
 function setPositionItems(arr) {
   for (let y = 0; y < arr.length; y++) {
@@ -53,3 +58,20 @@ function setPositionItems(arr) {
   }
 }
 setPositionItems(matrix);
+
+/* shuffle part */
+
+function shuffleArr(arr) {
+  return arr
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+}
+
+let shuffleBtn = document.querySelector(".btn");
+shuffleBtn.addEventListener("click", () => {
+  const flatArr = matrix.flat();
+  const shuffledArr = shuffleArr(flatArr);
+  matrix = getMatrix(shuffledArr);
+  setPositionItems(matrix);
+});

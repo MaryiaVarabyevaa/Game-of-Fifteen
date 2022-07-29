@@ -9,6 +9,7 @@
     @include font(500, 2.0rem);
     @extend %letter-spacing;
     @extend %cursor;
+    @extend %transition-btn;
     padding: 0.5em 1.5em;
     
     &:hover {

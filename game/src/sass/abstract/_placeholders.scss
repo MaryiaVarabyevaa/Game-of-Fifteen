@@ -8,5 +8,8 @@
     letter-spacing: 0.2rem;
 }
 %transition {
-    transition: transform 0.2s ease-in-out;
+    transition: transform .2s;
+}
+%transition-btn {
+    transition: all .4s ease-in;
 }
