@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 import "./sass/style.scss";
 
@@ -74,4 +75,45 @@ shuffleBtn.addEventListener("click", () => {
   const shuffledArr = shuffleArr(flatArr);
   matrix = getMatrix(shuffledArr);
   setPositionItems(matrix);
+});
+
+/* change position by click part */
+
+function findCoordsByNum(number, arr) {
+  for (let y = 0; y < arr.length; y++) {
+    for (let x = 0; x < arr[y].length; x++) {
+      if (matrix[y][x] === number) {
+        return { x, y };
+      }
+    }
+  }
+  return null;
+}
+
+function isValidForSwap(coords1, coords2) {
+  const diffX = Math.abs(coords1.x - coords2.x);
+  const diffY = Math.abs(coords1.y - coords2.y);
+
+  return (diffX === 1 || diffY === 1) && (coords1.x === coords2.x || coords1.y === coords2.y);
+}
+
+function swap(coords1, coords2, arr) {
+  const coords1Num = arr[coords1.y][coords1.x];
+  arr[coords1.y][coords1.x] = arr[coords2.y][coords2.x];
+  arr[coords2.y][coords2.x] = coords1Num;
+  setPositionItems(matrix);
+}
+
+wrapperGame.addEventListener("click", (event) =>{
+  const btn = event.target.closest("button");
+  if (!btn) {
+    return;
+  }
+  const btnNum = Number(btn.dataset.id);
+  const btnCoords = findCoordsByNum(btnNum, matrix);
+  const blankCoords = findCoordsByNum(countItems, matrix);
+  const isValid = isValidForSwap(btnCoords, blankCoords);
+  if (isValid) {
+    swap(blankCoords, btnCoords, matrix);
+  }
 });
