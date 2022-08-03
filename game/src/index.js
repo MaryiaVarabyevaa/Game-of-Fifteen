@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 import "./sass/style.scss";
@@ -45,9 +46,6 @@ function setNodeStyles(node, x, y) {
   // eslint-disable-next-line no-param-reassign
   node.style.transform = `translate3D(${x * shiftPs}%, ${y * shiftPs}%, 0)`;
 }
-
-// y - индекс элементов массива
-// x - индекс элементов подмассива
 
 function setPositionItems(arr) {
   for (let y = 0; y < arr.length; y++) {
@@ -102,6 +100,9 @@ function swap(coords1, coords2, arr) {
   arr[coords1.y][coords1.x] = arr[coords2.y][coords2.x];
   arr[coords2.y][coords2.x] = coords1Num;
   setPositionItems(matrix);
+  // if (isWon(matrix)) {
+  //   addWonClass();
+  // }
 }
 
 wrapperGame.addEventListener("click", (event) =>{
@@ -115,5 +116,48 @@ wrapperGame.addEventListener("click", (event) =>{
   const isValid = isValidForSwap(btnCoords, blankCoords);
   if (isValid) {
     swap(blankCoords, btnCoords, matrix);
+    setPositionItems(matrix);
   }
 });
+
+/* change position by arrows */
+
+window.addEventListener("keydown", (event) => {
+  if (!event.key.includes("Arrow")) {
+    // eslint-disable-next-line no-useless-return
+    return;
+  }
+  const blankCoords = findCoordsByNum(countItems, matrix);
+  const maxIndexMatrix = matrix.length;
+  const btnCoords = {
+    x: blankCoords.x,
+    y: blankCoords.y
+  };
+
+  const direction = event.key.split("Arrow")[1].toLowerCase();
+  switch (direction) {
+    case "up":
+      btnCoords.y += 1;
+      break;
+    case "down":
+      btnCoords.y -= 1;
+      break;
+    case "right":
+      btnCoords.x -= 1;
+      break;
+    case "left":
+      btnCoords.x += 1;
+      break;
+    default:
+      break;
+  }
+  // eslint-disable-next-line max-len
+  if (btnCoords.y >= maxIndexMatrix || btnCoords.y < 0 || btnCoords.x >= maxIndexMatrix || btnCoords.x < 0) {
+    return;
+  }
+
+  swap(blankCoords, btnCoords, matrix);
+  setPositionItems(matrix);
+});
+
+/* part for winners */
