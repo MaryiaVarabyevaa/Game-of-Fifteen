@@ -5,4 +5,7 @@ body {
     @extend %font-primary;
     font-size: 1.6rem;
     background: $color-background;
+    @include media-screen {
+        font-size: 1.4rem;
+    }
 }

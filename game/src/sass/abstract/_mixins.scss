@@ -7,3 +7,6 @@
     flex-direction: $direction;
     gap: $gap;
 }
+@mixin media-screen {
+    @media (max-width: 500px) { @content; }
+}
