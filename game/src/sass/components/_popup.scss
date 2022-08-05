@@ -1,0 +1,25 @@
+.popup {
+    display: none;
+    align-self: center;
+    @extend %transition-btn;
+}
+.popup.active{
+    display: block;
+    z-index: 110;
+    position: absolute;
+    top: calc(50% - 180px);
+}
+.popup__body {
+    max-width: 360px;
+    padding: 5rem;
+    background-color: aqua;
+    border-radius: 20px;   
+    background-color: $color-item;
+}
+.popup__text {
+    display: flex;
+    justify-content: center;
+    @include font(500, 3.2rem); 
+    @extend %letter-spacing;
+    color: $color-number;
+}

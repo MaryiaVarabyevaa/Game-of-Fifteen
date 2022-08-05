@@ -100,9 +100,9 @@ function swap(coords1, coords2, arr) {
   arr[coords1.y][coords1.x] = arr[coords2.y][coords2.x];
   arr[coords2.y][coords2.x] = coords1Num;
   setPositionItems(matrix);
-  // if (isWon(matrix)) {
-  //   addWonClass();
-  // }
+  if (isWon(matrix)) {
+    addWonFunc();
+  }
 }
 
 wrapperGame.addEventListener("click", (event) =>{
@@ -161,3 +161,36 @@ window.addEventListener("keydown", (event) => {
 });
 
 /* part for winners */
+
+const winFlatArr = new Array(16).fill(0).map((item, i) => i + 1);
+function isWon(matrix) {
+  const flatMatrix = matrix.flat();
+  for (let i = 0; i < winFlatArr.length; i++) {
+    if (flatMatrix[i] !== winFlatArr[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+const popup = document.querySelector("#popup");
+const shadowItem = document.querySelector(".shadow");
+
+function addActiveClass() {
+  shadowItem.classList.add("active");
+  popup.classList.add("active");
+}
+
+function removeActiveClass() {
+  shadowItem.classList.remove("active");
+  popup.classList.remove("active");
+}
+
+function addWonFunc() {
+  setTimeout(()=> {
+    addActiveClass();
+    setTimeout(()=> {
+      removeActiveClass();
+    }, 800);
+  }, 200);
+}

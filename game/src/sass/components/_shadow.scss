@@ -1,0 +1,16 @@
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(41, 41, 41, 0.6);
+    visibility: hidden;
+    opacity: 0;
+    @extend %transition;
+}
+.shadow.active {
+    visibility: visible;
+    opacity: 1;
+}
