@@ -58,6 +58,32 @@ function setPositionItems(arr) {
 }
 setPositionItems(matrix);
 
+const watch = document.querySelector(".watch");
+let milliSecs = 0;
+let timer;
+
+function startWatch() {
+  clearInterval(timer);
+  timer = setInterval(() => {
+    milliSecs += 10;
+    let dateTimer = new Date(milliSecs);
+    watch.innerHTML = ("0" + dateTimer.getUTCHours()).slice(-2) + ":" + 
+                      ("0" + dateTimer.getUTCMinutes()).slice(-2) + ":" +
+                      ("0" + dateTimer.getUTCSeconds()).slice(-2) + ":" +
+                      ("0" + dateTimer.getUTCMilliseconds()).slice(-3, -1);
+  }, 10);
+}
+
+function pausedWatch() {
+  clearInterval(timer);
+}
+
+function resetWatch() {
+  clearInterval(timer);
+  milliSecs = 0;
+  watch.innerHTML = "00:00:00";
+}
+
 /* shuffle part */
 
 function shuffleArr(arr) {
@@ -73,6 +99,8 @@ shuffleBtn.addEventListener("click", () => {
   const shuffledArr = shuffleArr(flatArr);
   matrix = getMatrix(shuffledArr);
   setPositionItems(matrix);
+  resetWatch();
+  movePart.innerHTML = 0;
 });
 
 /* change position by click part */
@@ -102,7 +130,14 @@ function swap(coords1, coords2, arr) {
   setPositionItems(matrix);
   if (isWon(matrix)) {
     addWonFunc();
+    pausedWatch();
   }
+}
+
+const movePart = document.querySelector(".move-container h3 span");
+
+function moveTime() {
+  const moveTimes = ++movePart.innerHTML;
 }
 
 wrapperGame.addEventListener("click", (event) =>{
@@ -115,6 +150,8 @@ wrapperGame.addEventListener("click", (event) =>{
   const blankCoords = findCoordsByNum(countItems, matrix);
   const isValid = isValidForSwap(btnCoords, blankCoords);
   if (isValid) {
+    moveTime();
+    startWatch();
     swap(blankCoords, btnCoords, matrix);
     setPositionItems(matrix);
   }
@@ -133,7 +170,8 @@ window.addEventListener("keydown", (event) => {
     x: blankCoords.x,
     y: blankCoords.y
   };
-
+  startWatch();
+  moveTime();
   const direction = event.key.split("Arrow")[1].toLowerCase();
   switch (direction) {
     case "up":
@@ -179,11 +217,14 @@ const shadowItem = document.querySelector(".shadow");
 function addActiveClass() {
   shadowItem.classList.add("active");
   popup.classList.add("active");
+  pausedWatch();
 }
 
 function removeActiveClass() {
   shadowItem.classList.remove("active");
   popup.classList.remove("active");
+  movePart.innerHTML = 0;
+  resetWatch();
 }
 
 function addWonFunc() {
@@ -191,6 +232,6 @@ function addWonFunc() {
     addActiveClass();
     setTimeout(()=> {
       removeActiveClass();
-    }, 800);
+    }, 1000);
   }, 200);
 }
