@@ -1,6 +1,3 @@
-/* eslint-disable no-useless-return */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-plusplus */
 import "./sass/style.scss";
 
 const values = new Array(16).fill(0).map((item, index) => index + 1);
@@ -67,10 +64,10 @@ function startWatch() {
   timer = setInterval(() => {
     milliSecs += 10;
     let dateTimer = new Date(milliSecs);
-    watch.innerHTML = ("0" + dateTimer.getUTCHours()).slice(-2) + ":" + 
-                      ("0" + dateTimer.getUTCMinutes()).slice(-2) + ":" +
-                      ("0" + dateTimer.getUTCSeconds()).slice(-2) + ":" +
-                      ("0" + dateTimer.getUTCMilliseconds()).slice(-3, -1);
+    watch.innerHTML = ("0" + dateTimer.getUTCHours()).slice(-2) + ":"
+                    + ("0" + dateTimer.getUTCMinutes()).slice(-2) + ":"
+                    + ("0" + dateTimer.getUTCSeconds()).slice(-2) + ":"
+                    + ("0" + dateTimer.getUTCMilliseconds()).slice(-3, -1);
   }, 10);
 }
 
@@ -137,7 +134,7 @@ function swap(coords1, coords2, arr) {
 const movePart = document.querySelector(".move-container h3 span");
 
 function moveTime() {
-  const moveTimes = ++movePart.innerHTML;
+  ++movePart.innerHTML;
 }
 
 wrapperGame.addEventListener("click", (event) =>{
@@ -161,7 +158,6 @@ wrapperGame.addEventListener("click", (event) =>{
 
 window.addEventListener("keydown", (event) => {
   if (!event.key.includes("Arrow")) {
-    // eslint-disable-next-line no-useless-return
     return;
   }
   const blankCoords = findCoordsByNum(countItems, matrix);
@@ -189,7 +185,6 @@ window.addEventListener("keydown", (event) => {
     default:
       break;
   }
-  // eslint-disable-next-line max-len
   if (btnCoords.y >= maxIndexMatrix || btnCoords.y < 0 || btnCoords.x >= maxIndexMatrix || btnCoords.x < 0) {
     return;
   }
@@ -201,8 +196,8 @@ window.addEventListener("keydown", (event) => {
 /* part for winners */
 
 const winFlatArr = new Array(16).fill(0).map((item, i) => i + 1);
-function isWon(matrix) {
-  const flatMatrix = matrix.flat();
+function isWon(arr) {
+  const flatMatrix = arr.flat();
   for (let i = 0; i < winFlatArr.length; i++) {
     if (flatMatrix[i] !== winFlatArr[i]) {
       return false;
