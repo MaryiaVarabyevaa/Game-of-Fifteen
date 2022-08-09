@@ -1,4 +1,4 @@
-# Game-of-Fifteen
+# Game of Fifteen
 
 **Task description**: make the game of Fifteen.
 
