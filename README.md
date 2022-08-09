@@ -11,4 +11,4 @@
 - stopwatch and counting the number of steps;
 - congratulatory pop-up.
 
-**Game link**: [link](https://maryiavarabyevaa.github.io/shelter/pages/main/index.html).
+**Game link**: [link](https://maryiavarabyevaa.github.io/Game-of-Fifteen/dist/index.html).
