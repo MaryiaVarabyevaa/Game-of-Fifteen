@@ -6,9 +6,9 @@
 
 **Implemented functionality**: 
 
--responsive markup;
--moving elements with a mouse click and pressing the arrow keys on the keyboard;
--stopwatch and counting the number of steps;
--congratulatory pop-up.
+- responsive markup;
+- moving elements with a mouse click and pressing the arrow keys on the keyboard;
+- stopwatch and counting the number of steps;
+- congratulatory pop-up.
 
 **Shelter link**: [link](https://maryiavarabyevaa.github.io/shelter/pages/main/index.html).
